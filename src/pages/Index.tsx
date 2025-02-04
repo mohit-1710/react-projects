@@ -2,6 +2,7 @@ import React from 'react';
 import DifficultySection from '@/components/DifficultySection';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import ProgressTracker from '@/components/ProgressTracker';
+import Navbar from '@/components/Navbar';
 
 const PROJECTS_DATA = {
   beginner: [
@@ -86,17 +87,16 @@ const PROJECTS_DATA = {
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">React Explorers Hub</h1>
-          <ThemeToggle />
-        </div>
-
+    <div className="min-h-screen">
+      <Navbar onSearch={(query) => {
+        // Implement search functionality here
+        console.log('Searching for:', query);
+      }} />
+      
+      <main className="container py-12">
         {/* Progress Section */}
         <section className="mb-12">
-          <ProgressTracker 
+          <ProgressTracker
             progress={33}
             completed={1}
             total={3}
@@ -104,25 +104,24 @@ const Index = () => {
           />
         </section>
 
-        {/* Projects Section */}
-        <section className="space-y-8">
+        {/* Projects Sections */}
+        <div className="space-y-20">
           <DifficultySection
             title="Beginner Projects"
+            description="Start your React journey with these fundamental projects."
             projects={PROJECTS_DATA.beginner}
-            difficulty="beginner"
           />
           <DifficultySection
             title="Intermediate Projects"
+            description="Level up your React skills with more complex applications."
             projects={PROJECTS_DATA.intermediate}
-            difficulty="intermediate"
           />
           <DifficultySection
             title="Advanced Projects"
             projects={PROJECTS_DATA.advanced}
-            difficulty="advanced"
           />
-        </section>
-      </div>
+        </div>
+      </main>
     </div>
   );
 };
